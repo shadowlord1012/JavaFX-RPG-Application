@@ -1,0 +1,2 @@
+map01 " slime wolf cow "
+map02 " Skeleton Slime "
