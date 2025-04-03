@@ -1,0 +1,1 @@
+Fire_Ball_Level_One 50 3 6 5 10 25 5

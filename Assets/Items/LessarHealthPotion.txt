@@ -1,0 +1,1 @@
+" map01 map02 map03 " health 200 200 16 16 10 20 50 false true false " Basic health potion restores 10 to 20 health points "
