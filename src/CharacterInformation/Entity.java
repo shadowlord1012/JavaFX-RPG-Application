@@ -34,6 +34,8 @@ public abstract class Entity extends Region{
 	private Rectangle hitBox;	//What area will cause damage to the entity
 	private boolean isActive = true;
 	private Vector2 position;
+	private int directionFacing;	//Which way is the entity facing
+	private Abilities[] activeAbilities = new Abilities[4];
 	
 	public boolean IsMoving = false;
 	
@@ -60,6 +62,9 @@ public abstract class Entity extends Region{
 	public int MovementSpeed() {return movementSpeed;}
 	public void SetMovementSpeed(int value) {movementSpeed = value;}
 	public void SetRow(int value) {renderingCounter[2] = value;}
+	public void setDirection(int value) {directionFacing = value;}
+	public int getDirection() {return directionFacing;}
+	public Abilities getActiveAbilityAtIndex(int index) { return activeAbilities[index];}
 	
 	/**
 	 * Creates a blank empty entity
@@ -73,17 +78,38 @@ public abstract class Entity extends Region{
 		}catch(IOException e) {}
 	}
 	
-public void setStatusByKeyValuePair(String key, int value) {
+	public void setStatusByKeyValuePair(String key, int value) {
 		
 		if(status.containsKey(key))
 			status.put(key, status.get(key)+value);
 		else
 			status.put(key,value);
 	}
+	
+	public void SelectAbilityLocation(String abilityName,int location)
+	{
+		if(activeAbilities[location] != null)
+		{
+			//TODO Add in a verification to the player to change said ability with a new one 
+		}
+		else 
+		{
+			if(Global.ABILITIES_LIST.containsKey(abilityName))
+			{
+				activeAbilities[location] = Global.ABILITIES_LIST.get(abilityName);
+			}
+			else
+			{
+				//TODO display a warning to the player that no such ability exists
+			}
+		}
+	}
 	/**
 	 * Updates the entities information
 	 */
 	public void Update(World world) {
+		
+		//Only update the entity once it is moving
 		if(this.IsMoving)
 		{
 			this.renderingCounter[0]++;
@@ -99,6 +125,16 @@ public void setStatusByKeyValuePair(String key, int value) {
 		else {
 			this.renderingCounter[1] = 0;
 		}
+		
+		//updates the ability that is being used
+		for(Abilities x : activeAbilities)
+		{
+			if(x != null)
+				if(x.IsActive())
+				{
+					x.Update(this);
+				}
+		}
 	}
 	
 	/**
@@ -106,6 +142,8 @@ public void setStatusByKeyValuePair(String key, int value) {
 	 * @param gc
 	 */
 	public void DrawEntity(javafx.scene.canvas.GraphicsContext gc) {
+		
+		//Will only draw the image if it is active
 		if(this.isActive)
 		{
 			Image entityImage = SwingFXUtils.toFXImage(
@@ -118,6 +156,16 @@ public void setStatusByKeyValuePair(String key, int value) {
 					this.getPosition().Y,
 					this.width*Global.SCALE,
 					this.height*Global.SCALE);
+			
+			//Only draws the ability on the screen if it is active
+			for(Abilities x : activeAbilities)
+			{
+				if(x != null)
+					if(x.IsActive())
+					{	
+						x.Draw(gc);
+					}
+			}
 			
 		}
 	}

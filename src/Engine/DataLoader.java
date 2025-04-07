@@ -7,8 +7,11 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
+import CharacterInformation.Abilities;
 import CharacterInformation.Player;
 
 public class DataLoader {
@@ -26,6 +29,7 @@ public class DataLoader {
 	private PreparedStatement selectStatusData;
 	private PreparedStatement selectImageData;
 	private static PreparedStatement selectMapData;
+	private PreparedStatement selectAbilityData;
 	
 	public DataLoader() {
 		try {
@@ -38,6 +42,8 @@ public class DataLoader {
 					"SELECT * FROM Image ORDER BY ImageID");
 			selectMapData = connection.prepareStatement(
 					"SELECT * FROM Map ORDER BY MapID");
+			selectAbilityData = connection.prepareStatement(
+					"SELECT * FROM Ability ORDER BY ID");
 			
 		} catch (SQLException e)
 		{
@@ -169,5 +175,32 @@ public class DataLoader {
 		
 		
 		return levelLoad;
+	}
+
+	public final Map<String, Abilities> LoadAbilityData(){
+		
+		Map<String, Abilities> abilityLoad = new HashMap<>();
+		
+		try (ResultSet resultSet = selectAbilityData.executeQuery())
+		{
+			while(resultSet.next()) {
+				Abilities temp = new Abilities();
+				
+				temp.Initialize(resultSet.getString("Name"),resultSet.getString("FilePath"),
+						resultSet.getString("HexCode"),
+						resultSet.getInt("MovementSpeed"),resultSet.getInt("NumberOfImages"),
+						resultSet.getInt("RenderSpeed"),new Vector2(resultSet.getInt("MinDamage"), resultSet.getInt("MaxDamage")),
+						resultSet.getInt("Cost"));
+				if(!abilityLoad.containsKey(temp.getName()))
+				{
+					abilityLoad.put(temp.getName(), temp);
+				}
+				else {
+					//TODO add in error for not loading abilities correct
+				}
+			}
+		}catch(SQLException e) {e.printStackTrace();}
+		
+		return abilityLoad;
 	}
 }

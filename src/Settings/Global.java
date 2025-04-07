@@ -1,5 +1,9 @@
 package Settings;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import CharacterInformation.Abilities;
 import Engine.Camera;
 
 /**
@@ -16,4 +20,5 @@ public class Global {
 	public static Camera WORLD_CAMERA = new Camera();
 	public static float MASTER_VOLUME = 0;	//Master volume control
 	public static float SOUND_EFFECT_VOLUME = 0;	//Sound effect control
+	public static final Map<String, Abilities> ABILITIES_LIST = new HashMap<>(); 
 }
