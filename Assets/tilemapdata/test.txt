@@ -1,0 +1,317 @@
+{
+  "TilesOnMap": [
+    [
+      {
+        "Name": "test",
+        "FilePath": "/home/mike/eclipse-workspace/JavaRPGApplication/SliverMoon/Assets/TileImages/TesttileSheet.png",
+        "TileSheetX": 3,
+        "TileSheetY": 0,
+        "Width": 16,
+        "Height": 16,
+        "Stoppable": false,
+        "damage": false,
+        "Active": false,
+        "NumberOfImages": 0
+      },
+      {
+        "Name": "test",
+        "FilePath": "/home/mike/eclipse-workspace/JavaRPGApplication/SliverMoon/Assets/TileImages/TesttileSheet.png",
+        "TileSheetX": 3,
+        "TileSheetY": 0,
+        "Width": 16,
+        "Height": 16,
+        "Stoppable": false,
+        "damage": false,
+        "Active": false,
+        "NumberOfImages": 0
+      },
+      {
+        "Name": "test",
+        "FilePath": "/home/mike/eclipse-workspace/JavaRPGApplication/SliverMoon/Assets/TileImages/TesttileSheet.png",
+        "TileSheetX": 3,
+        "TileSheetY": 0,
+        "Width": 16,
+        "Height": 16,
+        "Stoppable": false,
+        "damage": false,
+        "Active": false,
+        "NumberOfImages": 0
+      },
+      {
+        "Name": "test",
+        "FilePath": "/home/mike/eclipse-workspace/JavaRPGApplication/SliverMoon/Assets/TileImages/TesttileSheet.png",
+        "TileSheetX": 3,
+        "TileSheetY": 0,
+        "Width": 16,
+        "Height": 16,
+        "Stoppable": false,
+        "damage": false,
+        "Active": false,
+        "NumberOfImages": 0
+      },
+      {
+        "Name": "test",
+        "FilePath": "/home/mike/eclipse-workspace/JavaRPGApplication/SliverMoon/Assets/TileImages/TesttileSheet.png",
+        "TileSheetX": 3,
+        "TileSheetY": 0,
+        "Width": 16,
+        "Height": 16,
+        "Stoppable": false,
+        "damage": false,
+        "Active": false,
+        "NumberOfImages": 0
+      }
+    ],
+    [
+      {
+        "Name": "test",
+        "FilePath": "/home/mike/eclipse-workspace/JavaRPGApplication/SliverMoon/Assets/TileImages/TesttileSheet.png",
+        "TileSheetX": 3,
+        "TileSheetY": 0,
+        "Width": 16,
+        "Height": 16,
+        "Stoppable": false,
+        "damage": false,
+        "Active": false,
+        "NumberOfImages": 0
+      },
+      {
+        "Name": "test",
+        "FilePath": "/home/mike/eclipse-workspace/JavaRPGApplication/SliverMoon/Assets/TileImages/TesttileSheet.png",
+        "TileSheetX": 3,
+        "TileSheetY": 0,
+        "Width": 16,
+        "Height": 16,
+        "Stoppable": false,
+        "damage": false,
+        "Active": false,
+        "NumberOfImages": 0
+      },
+      {
+        "Name": "test",
+        "FilePath": "/home/mike/eclipse-workspace/JavaRPGApplication/SliverMoon/Assets/TileImages/TesttileSheet.png",
+        "TileSheetX": 3,
+        "TileSheetY": 0,
+        "Width": 16,
+        "Height": 16,
+        "Stoppable": false,
+        "damage": false,
+        "Active": false,
+        "NumberOfImages": 0
+      },
+      {
+        "Name": "test",
+        "FilePath": "/home/mike/eclipse-workspace/JavaRPGApplication/SliverMoon/Assets/TileImages/TesttileSheet.png",
+        "TileSheetX": 3,
+        "TileSheetY": 0,
+        "Width": 16,
+        "Height": 16,
+        "Stoppable": false,
+        "damage": false,
+        "Active": false,
+        "NumberOfImages": 0
+      },
+      {
+        "Name": "test",
+        "FilePath": "/home/mike/eclipse-workspace/JavaRPGApplication/SliverMoon/Assets/TileImages/TesttileSheet.png",
+        "TileSheetX": 3,
+        "TileSheetY": 0,
+        "Width": 16,
+        "Height": 16,
+        "Stoppable": false,
+        "damage": false,
+        "Active": false,
+        "NumberOfImages": 0
+      }
+    ],
+    [
+      {
+        "Name": "test",
+        "FilePath": "/home/mike/eclipse-workspace/JavaRPGApplication/SliverMoon/Assets/TileImages/TesttileSheet.png",
+        "TileSheetX": 3,
+        "TileSheetY": 0,
+        "Width": 16,
+        "Height": 16,
+        "Stoppable": false,
+        "damage": false,
+        "Active": false,
+        "NumberOfImages": 0
+      },
+      {
+        "Name": "test",
+        "FilePath": "/home/mike/eclipse-workspace/JavaRPGApplication/SliverMoon/Assets/TileImages/TesttileSheet.png",
+        "TileSheetX": 3,
+        "TileSheetY": 0,
+        "Width": 16,
+        "Height": 16,
+        "Stoppable": false,
+        "damage": false,
+        "Active": false,
+        "NumberOfImages": 0
+      },
+      {
+        "Name": "test",
+        "FilePath": "/home/mike/eclipse-workspace/JavaRPGApplication/SliverMoon/Assets/TileImages/TesttileSheet.png",
+        "TileSheetX": 3,
+        "TileSheetY": 0,
+        "Width": 16,
+        "Height": 16,
+        "Stoppable": false,
+        "damage": false,
+        "Active": false,
+        "NumberOfImages": 0
+      },
+      {
+        "Name": "test",
+        "FilePath": "/home/mike/eclipse-workspace/JavaRPGApplication/SliverMoon/Assets/TileImages/TesttileSheet.png",
+        "TileSheetX": 3,
+        "TileSheetY": 0,
+        "Width": 16,
+        "Height": 16,
+        "Stoppable": false,
+        "damage": false,
+        "Active": false,
+        "NumberOfImages": 0
+      },
+      {
+        "Name": "test",
+        "FilePath": "/home/mike/eclipse-workspace/JavaRPGApplication/SliverMoon/Assets/TileImages/TesttileSheet.png",
+        "TileSheetX": 3,
+        "TileSheetY": 0,
+        "Width": 16,
+        "Height": 16,
+        "Stoppable": false,
+        "damage": false,
+        "Active": false,
+        "NumberOfImages": 0
+      }
+    ],
+    [
+      {
+        "Name": "test",
+        "FilePath": "/home/mike/eclipse-workspace/JavaRPGApplication/SliverMoon/Assets/TileImages/TesttileSheet.png",
+        "TileSheetX": 3,
+        "TileSheetY": 0,
+        "Width": 16,
+        "Height": 16,
+        "Stoppable": false,
+        "damage": false,
+        "Active": false,
+        "NumberOfImages": 0
+      },
+      {
+        "Name": "test",
+        "FilePath": "/home/mike/eclipse-workspace/JavaRPGApplication/SliverMoon/Assets/TileImages/TesttileSheet.png",
+        "TileSheetX": 3,
+        "TileSheetY": 0,
+        "Width": 16,
+        "Height": 16,
+        "Stoppable": false,
+        "damage": false,
+        "Active": false,
+        "NumberOfImages": 0
+      },
+      {
+        "Name": "test",
+        "FilePath": "/home/mike/eclipse-workspace/JavaRPGApplication/SliverMoon/Assets/TileImages/TesttileSheet.png",
+        "TileSheetX": 3,
+        "TileSheetY": 0,
+        "Width": 16,
+        "Height": 16,
+        "Stoppable": false,
+        "damage": false,
+        "Active": false,
+        "NumberOfImages": 0
+      },
+      {
+        "Name": "test",
+        "FilePath": "/home/mike/eclipse-workspace/JavaRPGApplication/SliverMoon/Assets/TileImages/TesttileSheet.png",
+        "TileSheetX": 3,
+        "TileSheetY": 0,
+        "Width": 16,
+        "Height": 16,
+        "Stoppable": false,
+        "damage": false,
+        "Active": false,
+        "NumberOfImages": 0
+      },
+      {
+        "Name": "test",
+        "FilePath": "/home/mike/eclipse-workspace/JavaRPGApplication/SliverMoon/Assets/TileImages/TesttileSheet.png",
+        "TileSheetX": 3,
+        "TileSheetY": 0,
+        "Width": 16,
+        "Height": 16,
+        "Stoppable": false,
+        "damage": false,
+        "Active": false,
+        "NumberOfImages": 0
+      }
+    ],
+    [
+      {
+        "Name": "test",
+        "FilePath": "/home/mike/eclipse-workspace/JavaRPGApplication/SliverMoon/Assets/TileImages/TesttileSheet.png",
+        "TileSheetX": 3,
+        "TileSheetY": 0,
+        "Width": 16,
+        "Height": 16,
+        "Stoppable": false,
+        "damage": false,
+        "Active": false,
+        "NumberOfImages": 0
+      },
+      {
+        "Name": "test",
+        "FilePath": "/home/mike/eclipse-workspace/JavaRPGApplication/SliverMoon/Assets/TileImages/TesttileSheet.png",
+        "TileSheetX": 3,
+        "TileSheetY": 0,
+        "Width": 16,
+        "Height": 16,
+        "Stoppable": false,
+        "damage": false,
+        "Active": false,
+        "NumberOfImages": 0
+      },
+      {
+        "Name": "test",
+        "FilePath": "/home/mike/eclipse-workspace/JavaRPGApplication/SliverMoon/Assets/TileImages/TesttileSheet.png",
+        "TileSheetX": 3,
+        "TileSheetY": 0,
+        "Width": 16,
+        "Height": 16,
+        "Stoppable": false,
+        "damage": false,
+        "Active": false,
+        "NumberOfImages": 0
+      },
+      {
+        "Name": "test",
+        "FilePath": "/home/mike/eclipse-workspace/JavaRPGApplication/SliverMoon/Assets/TileImages/TesttileSheet.png",
+        "TileSheetX": 3,
+        "TileSheetY": 0,
+        "Width": 16,
+        "Height": 16,
+        "Stoppable": false,
+        "damage": false,
+        "Active": false,
+        "NumberOfImages": 0
+      },
+      {
+        "Name": "test",
+        "FilePath": "/home/mike/eclipse-workspace/JavaRPGApplication/SliverMoon/Assets/TileImages/TesttileSheet.png",
+        "TileSheetX": 3,
+        "TileSheetY": 0,
+        "Width": 16,
+        "Height": 16,
+        "Stoppable": false,
+        "damage": false,
+        "Active": false,
+        "NumberOfImages": 0
+      }
+    ]
+  ],
+  "XTiles": 5,
+  "YTiles": 5,
+  "TileMapName": "test"
+}

@@ -1,5 +1,7 @@
 package Engine;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Creates a basic tile Object.
  */
@@ -7,18 +9,30 @@ public class Tile {
 
 	//Variables and basic methods
 	
-	private String name;	//Name of the tile 
-	private String filePath;	//file location of image
+	@SerializedName("Name")
+	private String name;	//Name of the tile
+	@SerializedName("FilePath")
+	private String filePath;	//file tile sheet path
+	@SerializedName("TileSheetX")
+	private int tileSheetX;	//The X location on the tile sheet
+	@SerializedName("TileSheetY")
+	private int tileSheetY;	//The Y location on the tile sheet
+	@SerializedName("Width")
 	private int width;	//width of the tile
+	@SerializedName("Height")
 	private int height;	//height of the tile
+	@SerializedName("Stoppable")
 	private boolean stoppable; 	//is the tile passable
+	@SerializedName("damage")
 	private boolean isDamaging;	//does it cause damage
+	@SerializedName("Active")
 	private boolean isActive;	//does it have rendering
 	@SuppressWarnings("unused")
-	private java.awt.image.BufferedImage img; //Image of the tile cannot change after tile is made
+	private transient java.awt.image.BufferedImage img; //Image of the tile cannot change after tile is made
+	@SerializedName("NumberOfImages")
 	private int numberOfImages;	//Gets how many images are in a sprite Sheet
-	private int renderableCounter[] = {0,0}; //used for the movement of images if needed
-	private int renderSpeed = 10;
+	private transient int renderableCounter[] = {0,0}; //used for the movement of images if needed
+	private transient int renderSpeed = 10;
 	
 	public String getName() {return name;}	//gets the name
 	public String getFilePath() {return filePath;}	//gets the file path 
@@ -55,6 +69,7 @@ public class Tile {
 	 * @return A basic Tile for the Tile Map 
 	 */
 	public void Initialize(String name,String filePath, 
+			int tileSheetLocationX, int tileSheetLocationY, 
 			int width, int height, int imageNumber,
 			boolean stop, boolean damage, 
 			boolean active) {
@@ -66,9 +81,19 @@ public class Tile {
 		this.stoppable = stop;
 		this.isDamaging = damage;
 		this.isActive = active;
+		this.tileSheetX = tileSheetLocationX;
+		this.tileSheetY = tileSheetLocationY;
 		
+	}
+	
+	public void LoadImages() {
 		try {
-			img = javax.imageio.ImageIO.read(new java.io.File(this.filePath));
+			//Loads the main tile sheet
+			java.awt.image.BufferedImage tileSheetImg = javax.imageio.ImageIO.read(new java.io.File(this.filePath));
+			
+			//gets the set image needed
+			img = tileSheetImg.getSubimage(tileSheetX*width, tileSheetY*height, width, height);
+			
 		} catch(java.io.IOException e) {}
 	}
 	

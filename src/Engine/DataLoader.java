@@ -1,5 +1,6 @@
 package Engine;
 
+import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.sql.Connection;
@@ -10,6 +11,9 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import CharacterInformation.Abilities;
 import CharacterInformation.Player;
@@ -22,6 +26,7 @@ public class DataLoader {
 	//This will be where the user is able to access only the play information from there account
 	private static final String USERNAME ="admin";
 	private static final String PASSWORD = "North2024!";
+	private static String currentMapName;
 	
 	//Database connection information
 	private Connection connection;
@@ -33,7 +38,10 @@ public class DataLoader {
 	
 	public DataLoader() {
 		try {
+			//Connects to the database
 			connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			
+			//Sets up all the SQL statments that are needed for the game data
 			selectPlayerInformation = connection.prepareStatement(
 					"SELECT * FROM Player ORDER BY ID");
 			selectStatusData = connection.prepareStatement(
@@ -51,17 +59,23 @@ public class DataLoader {
 			System.exit(1);
 		}
 	}
-	
+	/**
+	 * Loads all the information about the player character
+	 * @return
+	 */
 	public final Player LoadDataForPlayer() {
 		
+		//Creates basic player object
 		Player playerLoad = new Player();
 		
 		//Loads the basic player information 
 		try (ResultSet resultSet = selectPlayerInformation.executeQuery()){
 			while (resultSet.next()) {
 				
+				//Checks to see if the player is linked to the user name
 				if(resultSet.getString("PlayerID").equals(USERNAME))
 				{
+					//Sets all the values of the player 
 					playerLoad.setName(resultSet.getString("Name"));
 					playerLoad.setHexCode(resultSet.getString("StatID"));
 					playerLoad.setImageHexCode(resultSet.getString("ImageID"));
@@ -78,6 +92,7 @@ public class DataLoader {
 		try (ResultSet resultSet = selectStatusData.executeQuery()){
 			while(resultSet.next())
 			{
+				//checks to make sure all the status values are belonging to that player
 				if(resultSet.getString("StatID").equals(playerLoad.getHexCode()))
 				{
 					playerLoad.setStatusByKeyValuePair("Health", resultSet.getInt("Health"));
@@ -96,6 +111,7 @@ public class DataLoader {
 		try (ResultSet resultSet = selectImageData.executeQuery()){
 			while(resultSet.next())
 			{
+				//Checks to make sure the correct Images are connected to the player
 				if(resultSet.getString("ImageID").equals(playerLoad.getImageHexCode()))
 				{
 					playerLoad.setFilePath(resultSet.getString("Path"));
@@ -116,7 +132,12 @@ public class DataLoader {
 		}
 	}
 	
-	//Loads the map in which the player is on
+	/**
+	 * Loads the Tile Map in which the player is last known to be on
+	 * @param player
+	 * @return
+	 * @throws IOException
+	 */
 	public static final TileMap LoadDataForCurrentMap(Player player) throws IOException {
 		
 		TileMap mapLoad = new TileMap();
@@ -125,42 +146,31 @@ public class DataLoader {
 		try (ResultSet resultSet = selectMapData.executeQuery()){
 			while (resultSet.next())
 			{
+				//Makes sure the correct map is loaded (Last known location in the world)
 				if(player.getMapHex().equals(resultSet.getString("MapID")))
 				{
-					mapLoad = new TileMap(
-							resultSet.getString("Name"),
-							resultSet.getInt("SizeX"),
-							resultSet.getInt("SizeY"));
+					//Sets which map name the player was on
 					player.setMap(resultSet.getString("Name"));
+					
+					//Sets the current map name for when the level first loads
+					currentMapName = resultSet.getString("Name");
+					
+					//Reads the json text file for the map that is loading
+					try(FileReader rd = new FileReader("/home/mike/eclipse-workspace/JavaRPGApplication/SliverMoon/Assets/tilemapdata/"+resultSet.getString("Name")+".txt"))
+					{
+						Gson gson = new GsonBuilder().create();
+						
+						mapLoad = gson.fromJson(rd, TileMap.class);
+					}
 				}
 			}
 			
 		} catch(SQLException e) {e.printStackTrace();}
 		
-		//Loads in each tile to the tile map
-		if(mapLoad != null)
-		{
-			try(Scanner input = new Scanner(Paths.get("./Assets/tilemapdata/"+mapLoad.getName()+".txt")))
-			{
-				while(input.hasNext())
-				{
-					//Blank tile
-					Tile tileLoad = new Tile();
-					
-					//All the information of the tile
-					tileLoad.Initialize(input.next(), 
-							input.next(), input.nextInt(), 
-							input.nextInt(), input.nextInt(), 
-							input.nextBoolean(), input.nextBoolean(),
-							input.nextBoolean());
-					
-					//loads the tile to the map
-					mapLoad.loadTileDataToMap(tileLoad, input.nextInt(), input.nextInt());
-					
-				}
-			}
-			
-		}
+		//Loads all the tile images on the map
+		for(int x = 0; x < mapLoad.getXTiles(); x++)
+			for(int y = 0; y < mapLoad.getYTiles();y++)
+				mapLoad.getTilesOnMap()[x][y].LoadImages();
 		
 		return mapLoad;
 	}
@@ -168,15 +178,23 @@ public class DataLoader {
 	//Loads in the levelData and sets map name.
 	public static final Level LoadDataForLevel(Player player) throws IOException {
 		
+		//Creates a basic Level object
 		Level levelLoad = new Level();
 		
+		//Adds the current map to the level
 		levelLoad.LoadMap(LoadDataForCurrentMap(player));
-		levelLoad.SetMapName("map01");	//TODO Set map name to players last location which will be saved in the database
 		
+		//sets the level to the current location the player is at
+		levelLoad.SetMapName(currentMapName);	
+		//TODO Set map name to players last location which will be saved in the database
 		
 		return levelLoad;
 	}
 
+	/**
+	 * Loads all the Abilities into the game 
+	 * @return
+	 */
 	public final Map<String, Abilities> LoadAbilityData(){
 		
 		Map<String, Abilities> abilityLoad = new HashMap<>();

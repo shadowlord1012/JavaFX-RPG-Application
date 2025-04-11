@@ -41,6 +41,11 @@ public class Vector2 {
 		Y *= n;
 	}
 	
+	public void multiplyVec(Vector2 n) {
+		X *= n.X;
+		Y *= n.Y;
+	}
+	
 	public void div(double n)
 	{
 		X /=n;
@@ -62,11 +67,17 @@ public class Vector2 {
 		}
 	}
 	
+	
 	static public Vector2 subtract(Vector2 v1, Vector2 v2) {
 		return new Vector2(v1.X-v2.X, v1.Y - v2.Y);
 	}
 	
 	public double heading2() {
 		return Math.atan2(Y, X);
+	}
+	
+	@Override
+	public String toString() {
+		return "X: "+X+" Y: "+Y;
 	}
 }

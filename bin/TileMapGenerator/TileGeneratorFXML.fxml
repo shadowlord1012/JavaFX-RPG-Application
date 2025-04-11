@@ -32,12 +32,12 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
+<?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -66,7 +66,7 @@
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="339.0" prefWidth="757.0" VBox.vgrow="ALWAYS">
          <children>
             <Label layoutX="62.0" layoutY="14.0" text="Tile Map Selected" AnchorPane.leftAnchor="62.0" AnchorPane.topAnchor="10.0" />
-            <ImageView fx:id="TileMapImage" fitHeight="200.0" fitWidth="200.0" layoutX="15.0" layoutY="32.0" onMouseClicked="#tileSelectOnClick" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="36.0">
+            <ImageView fx:id="TileMapImage" fitHeight="200.0" fitWidth="200.0" layoutX="15.0" layoutY="32.0" onMouseClicked="#tileSelectOnClick" onMouseMoved="#getXYTileSheetOnMouseMoved" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="36.0">
                <image>
                   <Image url="@../JavaFX%20RPG%20Application/Assets/TileImages/placeholders/NoMapPlaceHolder.png" />
                </image>
@@ -76,26 +76,28 @@
             <Label layoutX="51.0" layoutY="236.0" text="Tile Map Information" />
             <Label layoutX="232.0" layoutY="10.0" text="Tile Information" />
             <Label layoutX="215.0" layoutY="36.0" text="X:" />
-            <TextField fx:id="currentTileX" editable="false" layoutX="227.0" layoutY="32.0" prefHeight="26.0" prefWidth="45.0" text="0" />
+            <TextField fx:id="currentTileX" editable="false" layoutX="227.0" layoutY="32.0" prefHeight="26.0" prefWidth="45.0" />
             <Label layoutX="216.0" layoutY="69.0" text="Y:" />
-            <TextField fx:id="currentTileY" editable="false" layoutX="227.0" layoutY="65.0" prefHeight="26.0" prefWidth="45.0" text="0" />
+            <TextField fx:id="currentTileY" editable="false" layoutX="227.0" layoutY="65.0" prefHeight="26.0" prefWidth="45.0" />
             <ImageView fx:id="tileSelectedImage" fitHeight="64.0" fitWidth="64.0" layoutX="281.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true" />
             <Label layoutX="249.0" layoutY="103.0" text="Size of Tile" />
             <Label layoutX="216.0" layoutY="127.0" text="X:" />
-            <TextField fx:id="tileSizeX" layoutX="227.0" layoutY="123.0" onInputMethodTextChanged="#sizeOFXTileOnChange" prefHeight="26.0" prefWidth="45.0" promptText="0" />
+            <TextField fx:id="tileSizeX" layoutX="227.0" layoutY="123.0" onMouseClicked="#sizeOFXTileOnChange" prefHeight="26.0" prefWidth="45.0" promptText="0" />
             <Label layoutX="276.0" layoutY="127.0" text="Y:" />
-            <TextField fx:id="tileSizeY" layoutX="292.0" layoutY="123.0" onInputMethodTextChanged="#sizeOFYTileOnChange" prefHeight="26.0" prefWidth="45.0" promptText="0" />
-            <ScrollPane fx:id="finishMap" layoutX="345.0" layoutY="27.0" prefHeight="241.0" prefWidth="305.0" />
-            <Label fx:id="outputInformation" layoutX="217.0" layoutY="289.0" prefHeight="18.0" prefWidth="432.0" text="Output Information" />
+            <TextField fx:id="tileSizeY" layoutX="292.0" layoutY="123.0" onMouseClicked="#sizeOFYTileOnChange" prefHeight="26.0" prefWidth="45.0" promptText="0" />
+            <Label fx:id="outputInformation" layoutX="352.0" layoutY="289.0" prefHeight="18.0" prefWidth="297.0" text="Output Information" />
             <CheckBox fx:id="damagingTile" layoutX="233.0" layoutY="160.0" mnemonicParsing="false" text="Damaging" />
             <CheckBox fx:id="activeTile" layoutX="233.0" layoutY="189.0" mnemonicParsing="false" text="Active" />
             <Label layoutX="216.0" layoutY="218.0" text="# Of Images:" />
             <TextField fx:id="numberOfImages" layoutX="299.0" layoutY="214.0" onInputMethodTextChanged="#numberOfImagesOnChange" prefHeight="26.0" prefWidth="32.0" promptText="0" />
-            <TextField fx:id="tileMapHeight" layoutX="62.0" layoutY="255.0" onInputMethodTextChanged="#tileMapHeightOnChange" prefHeight="26.0" prefWidth="40.0" promptText="200" />
-            <TextField fx:id="tileMapWidth" layoutX="152.0" layoutY="255.0" onInputMethodTextChanged="#tileMapWidthOnChange" prefHeight="26.0" prefWidth="40.0" promptText="200" />
+            <TextField fx:id="tileMapHeight" layoutX="62.0" layoutY="255.0" onMouseClicked="#tileMapHeightOnChange" prefHeight="26.0" prefWidth="40.0" promptText="200" />
+            <TextField fx:id="tileMapWidth" layoutX="152.0" layoutY="255.0" onMouseClicked="#tileMapWidthOnChange" prefHeight="26.0" prefWidth="40.0" promptText="200" />
             <CheckBox fx:id="passibleTile" layoutX="233.0" layoutY="250.0" mnemonicParsing="false" text="Passible" />
             <Label layoutX="14.0" layoutY="289.0" text="Name:" />
-            <TextField fx:id="tileMapName" layoutX="62.0" layoutY="285.0" onInputMethodTextChanged="#tileMapNameOnChange" prefHeight="26.0" prefWidth="129.0" promptText="Map Name" />
+            <TextField fx:id="tileMapName" layoutX="62.0" layoutY="285.0" prefHeight="26.0" prefWidth="129.0" promptText="Map Name" />
+            <Canvas fx:id="finishMap" height="241.0" layoutX="360.0" layoutY="27.0" onMouseClicked="#placeOnMapOnMouseClicked" onMouseEntered="#placeOnMapOnMouseEntered" onMouseMoved="#getXYOnMouseMoved" width="305.0" />
+            <Label layoutX="220.0" layoutY="289.0" text="Name:" />
+            <TextField fx:id="tileNameText" layoutX="270.0" layoutY="285.0" prefHeight="26.0" prefWidth="74.0" promptText="tile name" />
          </children>
     </AnchorPane>
   </children>

@@ -1,5 +1,7 @@
 package Engine;
 
+import com.google.gson.annotations.SerializedName;
+
 import Settings.Global;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.*;
@@ -13,11 +15,17 @@ import javafx.scene.image.*;
 public class TileMap {
 
 	//Variables and basic Methods
+	@SerializedName("TileMapName")
 	private String name;	//Name of the map
+	@SerializedName("TilesOnMap")
 	private Tile[][] tilesOnMap;	//Two dimensional array of tiles on screen [x][y]
+	@SerializedName("XTiles")
 	private int xTiles;	//number of tiles on the x axis
+	@SerializedName("YTiles")
 	private int yTiles;	//NUmber of tiles on the y axis 
 	
+	
+	public void setTilesOnMap(Tile[][] value) {tilesOnMap = value;}
 	public Tile[][] getTilesOnMap(){return tilesOnMap;}
 	public String getName() {return name;}
 	public int getXTiles() {return xTiles;}

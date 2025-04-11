@@ -14,12 +14,12 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 public class Abilities {
-	//Variables
+	
+	//Variables and basic methods
 	private String name;	//Name of the Ability
 	private String filePath;	//File path of the image
 	private String ownerName;	//Who used the entity
 	private String hexCode;		//Hex code for the database
-	
 	private Vector2 position;	//Current Position 
 	private Vector2 duration;	//How long it will last
 	private int movementSpeed;	//How fast it travels on the screen
@@ -72,6 +72,9 @@ public class Abilities {
 		}catch (IOException e) {e.printStackTrace();}
 	}
 	
+	/**
+	 * Changing the image of the ability
+	 */
 	private void changeImage() {
 		//counter for the image change
 		imageCounter[0]++;
@@ -89,6 +92,9 @@ public class Abilities {
 		}
 	}
 	
+	/**
+	 * The Movement of the ability
+	 */
 	private void movement() {
 		
 		//Starts the duration counter
@@ -128,17 +134,29 @@ public class Abilities {
 	 * @param ref
 	 */
 	public void Update(Entity ref) {
+		
+		//When the ability is used it wont update the position with the entity ref but its own movement
 		if(!this.isActive)
 		{
+			//Gets the entity's position reference
 			this.position = ref.getPosition();
+			
+			//Gets the Entity's Last Know direction reference
 			this.directionTravelling = ref.getDirection();
 		}
 		else {
+			
+			//Changes the Abilities Image
 			changeImage();
+			
+			//Moves the Ability around until done
 			movement();
 		}
 	}
-	
+	/**
+	 * Draws the ability on the screen
+	 * @param gc
+	 */
 	public void Draw(GraphicsContext gc) {
 		if(isActive)
 		{
